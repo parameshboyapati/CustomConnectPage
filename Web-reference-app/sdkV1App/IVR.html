@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<style type="text/css">
+    .nmpd-grid {border: none; padding: 20px;}
+    .nmpd-grid>tbody>tr>td {border: none;}
+
+    /* Some custom styling for Bootstrap */
+    .qtyInput {
+        /*margin-left:20%;*/
+        /*width: 50%;*/
+        /*padding: 12px 12px;*/
+        color: #555;
+        background-color: white;
+        border: 1px solid #ccc;
+        border-radius: 5%;
+        /*-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);*/
+        /*box-shadow: inset 0 1px 1px rgba(0,0,0,.075);*/
+        /*-webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;*/
+        /*-o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;*/
+        /*transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;*/
+    }
+    .submitbutton {
+        /*margin-left:40%;*/
+        width: 20%;
+        margin: 3%;
+        padding: 12px 12px;
+        color: #555;
+        background-color: white;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .red-star {
+        width: 50%;
+        height: 50%;
+        color: red;
+    }
+
+    #numericInput{
+
+        /*position:relative;*/
+        /*/!*width:40%;*!/*/
+        /*margin: 20px auto;*/
+    }
+    #numBox{
+        text-align:center;
+        width:250px;
+        height:20px;
+        /*text-align:right;*/
+        border:solid 1px black;
+        cursor:text;
+        overflow:hidden;
+    }
+    #keypad{
+
+        width:250px;
+        height:250px;
+        border:solid 1px black;
+        /*display:none;*/
+        /*position:absolute;*/
+        /*top:22px;*/
+        /*left:1px;*/
+    }
+    .keys{
+        border:solid 1px black;
+        background-color:#86b854;
+        text-align:center;
+        font-weight:bold;
+        color:white;
+        cursor:pointer;
+        padding:17px;
+    }
+    .keys:hover{
+        background-color:grey;
+    }
+    .keys:active{
+        background-color:white;
+    }
+    .btnn{
+        border:solid 1px black;
+        background-color:#86b854;
+        text-align:center;
+        font-weight:bold;
+        color:white;
+        cursor:pointer;
+        padding:10px;
+        /*width:100%;*/
+        /*height:100%;*/
+    }
+    .btnn:hover{
+        background-color:DarkGray;
+    }
+    .btnn:active{
+        background-color:LightGray;
+    }
+</style>
+<body>
+    <h3 style="margin-left: 5%">IVR Demo</h3>
+    <h4 style="margin:0 5%"> This demo is an example of how you can automate the transfer of a Nexus session form Self-Support to Agent Support using your own IVR.</h4>
+    <br>
+    <h4 style="margin:0 5%"> When a consumer requests Agent Support and selects the "Call" option, they are given a phone number and a connection code. When
+         the consumer enters this code into your IVR, you can lookup the session and assign it to the appropriate Agent or Skill.</h4>
+
+    <div  style="float:left; width: 39%; border: 1px solid black; margin:5%;" >
+        <div style = "border:1px solid black">
+            <h2 align = "center">This is your API call</h2>
+        </div>
+        <div style = "border:1px solid black; text-align:center;  padding:3%;">
+            <h4 align = "center"> Please enter an agent's email</h4>
+            <input id="useremail" class="qtyInput" style="width:30%" type="value"/><span class="red-star">★</span>
+            <!--<h4 align = "center"> The session will be assigned to this user.</h4>-->
+
+            <h4 align = "center"> Please enter an server name</h4>
+            <input id="server" class="qtyInput"  type="value"/>
+            <h4 align = "center"> Please enter client id</h4>
+            <input id="client_id" class="qtyInput"  type="value"/><span class="red-star">★</span>
+            <h4 align = "center"> Please enter client secret</h4>
+            <input id="client_secret" class="qtyInput" style="width:30%"  type="value"/><span class="red-star">★</span>
+
+        </div>
+
+        <div style = "border:1px solid black; overflow-x:auto">
+            <pre>
+            <code>
+ $.ajax({
+    url: "https://mycompany.nexus.support.com/api/v1/oauth2/token",
+    type: 'POST',
+    dataType: 'json',
+    data: client,
+    success: function(result) {
+       var accesstoken = result.access_token;
+       $.ajax({
+         url: 'https://mycompany.nexus.support.com/api/v1/sessions/search',
+         type: 'POST',
+         dataType: 'json',
+         data:  search_session, // or $('#myform').serializeArray()
+         beforeSend: function (xhr) {
+           xhr.setRequestHeader ("Authorization", "Bearer " + accesstoken);
+         },
+         success: function(data) {
+           var session_id = data[0].id;
+           var session_user = {"email":user_email};
+           var update_data = {"user":session_user};
+           $.ajax({
+             url: 'https://mycompany.nexus.support.com/api/v1/sessions/'+session_id,
+             type: 'PUT',
+             dataType: 'json',
+             data:  update_data, // or $('#myform').serializeArray()
+             beforeSend: function (xhr) {
+                xhr.setRequestHeader ("Authorization", "Bearer " + accesstoken);
+             },
+             success: function(result) {
+               console.log('result',result);
+             }
+           });
+         }
+       });
+     }
+ });
+            </code>
+            </pre>
+        </div>
+
+    </div>
+
+    <div  style="float:left;width:39%; border: 1px solid black; margin:5%">
+        <div style = "border:1px solid black">
+            <h2 align = "center">This is your IVR</h2>
+        </div>
+        <div  id="connection_code" style = "width: 100%; text-align: center; border:1px solid black">
+            <div>
+            <h3 align = "center"> Please enter your connection code</h3>
+            </div>
+            <div id="numericInput">
+                <div style="display:table; margin: 0 auto" id="numBox" class="qtyInput"  type="value"/></div>
+                <table align="center" id="keypad" >
+                    <tr>
+                        <td class="keys">1</td>
+                        <td class="keys">2</td>
+                        <td class="keys">3</td>
+                    </tr>
+                    <tr>
+                        <td class="keys">4</td>
+                        <td class="keys">5</td>
+                        <td class="keys">6</td>
+                    </tr>
+                    <tr>
+                        <td class="keys">7</td>
+                        <td class="keys">8</td>
+                        <td class="keys">9</td>
+                    </tr>
+                    <tr>
+                        <td class="btnn">DEL</td>
+                        <td class="keys">0</td>
+                        <td class="btnn">CLR</td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+            <input type="button" class="submitbutton" value="SUBMIT" onclick="myFunction();">
+                <div id="message">
+                    <h4 align = "center"></h4>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.keys').click(function(){
+            var numBox = document.getElementById('numBox');
+            if(this.innerHTML == '0'){
+                if (numBox.innerHTML.length > 0)
+                    numBox.innerHTML = numBox.innerHTML + this.innerHTML;
+            }else
+                numBox.innerHTML = numBox.innerHTML + this.innerHTML;
+                event.stopPropagation();
+        });
+
+        $('.btnn').click(function(){
+            if(this.innerHTML == 'DEL'){
+                var numBox = document.getElementById('numBox');
+                if(numBox.innerHTML.length > 0){
+                    numBox.innerHTML = numBox.innerHTML.substring(0, numBox.innerHTML.length - 1);
+                }
+            }else{
+                document.getElementById('numBox').innerHTML = '';
+            }
+            event.stopPropagation();
+        });
+    });
+
+
+    function myFunction(){
+        if($('#numBox').is(':empty')){
+            $('div#message h4').html('Please enter your connection code !');
+            return;
+        }
+        if($('#useremail').val() == ""){
+            $('div#message h4').html('Please enter your agent email !');
+            return;
+        }
+        if($('#client_id').val() == ""){
+            $('div#message h4').html('Please enter your client id !');
+            return;
+        }
+        if($('#client_secret').val() == ""){
+            $('div#message h4').html('Please enter your client secret !');
+            return;
+        }
+        var connection_code = $('#numBox').html();
+        var user_email = $('#useremail').val();
+        var search_session = {"include": "consumer,user,skill",
+                    "connection_code": connection_code};
+        var client_id = $('#client_id').val();
+        var client_secret = $('#client_secret').val();
+        var server =$('#server').val()? $('#server').val():"mycompany.nexus";
+
+//        var client={
+//            "grant_type":"client_credentials",
+//            "client_id": "testall",
+//            "client_secret":"D9SYbmSYCIm3VUYKXpI07OTQov6MIZuq"
+//        };
+        var client={
+            "grant_type":"client_credentials",
+            "client_id": client_id,
+            "client_secret":client_secret
+        };
+        $.ajax({
+            url: 'https://'+server+'.support.com/api/v1/oauth2/token',
+            type: 'POST',
+            dataType: 'json',
+            data: client,
+            success: function(result) {
+                console.log('result',result);
+                var accesstoken = result.access_token;
+                $.ajax({
+                    url: 'https://'+server+'.support.com/api/v1/sessions/search',
+                    type: 'POST',
+                    dataType: 'json',
+                    data:  search_session, // or $('#myform').serializeArray()
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader ("Authorization", "Bearer " + accesstoken);
+                    },
+                    success: function(data) {
+                        var session_id = data[0].id;
+                        var session_user = {
+                            "email":user_email
+                        };
+                        var update_data = {
+                            "user":session_user
+                        };
+                        $.ajax({
+                            url: 'https://'+server+'.support.com/api/v1/sessions/'+session_id,
+                            type: 'PUT',
+                            dataType: 'json',
+                            data: update_data, // or $('#myform').serializeArray()
+                            beforeSend: function (xhr) {
+                                xhr.setRequestHeader ("Authorization", "Bearer " + accesstoken);
+                            },
+                            success: function(result) {
+                                $('div#message h4').html('Session Assigned Successfully !');
+
+                            },
+                            error: function(error) {
+                                $('div#message h4').html(error.responseText);
+                                console.log('error', error.responseText);
+                            }
+                        });
+                    },
+                    error: function(error) {
+                        $('div#message h4').html(error.responseText);
+                        console.log('error', error.responseText);
+                    }
+                });
+            },
+            error: function(error) {
+                $('div#message h4').html(error.responseText);
+                console.log('error', error.responseText);
+            }
+        });
+
+    }
+</script>
+
+</body>
+
+</html>
