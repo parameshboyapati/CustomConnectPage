@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <link rel='stylesheet'  href="assets/css/style.css" type='text/css' media='all' />
+    <link rel='stylesheet'  href="assets/css/style-custom.css" type='text/css' media='all' />
+    <link rel='stylesheet'  href="assets/css/bbpress.css" type='text/css' media='all' />
+
+<body class="home page page-id-11 page-template page-template-template-front-page page-template-template-front-page-php">
+
+<!-- #header -->
+<header id="header" class="clearfix" role="banner">
+    <div class="ht-container">
+        <div id="header-inner" class="clearfix">
+            <!-- #logo -->
+            <div id="logo">
+                <a title="Acme" href="index.html">
+                    <i class="icon logo" >ACME</i>
+                </a>
+            </div>
+            <!-- /#logo -->
+            <!-- #primary-nav -->
+            <nav id="primary-nav" role="navigation" class="clearfix">
+                <ul id="menu-primary-nav" class="nav sf-menu clearfix">
+                    <li class="menu-item "><a href="#">Websites</a></li>
+                    <li class="menu-item "><a href="#">Email</a></li>
+                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children "><a href="#">Support +</a>
+                        <ul class="sub-menu">
+                            <li class="menu-item"><a href="support1.html">Support1</a></li>
+                            <li class="menu-item"><a href="support2.html">Support2</a></li>
+                            <li class="menu-item"><a href="support3.html">Support3</a></li>
+                            <li class="menu-item"><a href="support4.html">Support4</a></li>
+                            <li class="menu-item "><a href="CallingCard1.html">Calling Card 1</a></li>
+                            <li class="menu-item "><a href="CallingCard2.html">Calling Card 2</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item "><a id="live_support_button" >Get Live Help</a></li>
+                    <li class="menu-item "><a href="IVR.html">IVR</a></li>
+                </ul>
+            </nav>
+            <!-- #primary-nav -->
+        </div>
+    </div>
+</header>
+<!-- /#header -->
+<!-- #page-header -->
+
+<div id="page-header" class="clearfix">
+    <div class="ht-container">
+        <h1>Welcome to Acme Support</h1>
+        <h2>Questions about Acme products? We've got the resources to help you out.</h2>
+    </div>
+</div>
+<!-- /#page-header -->
+<!-- #features-list -->
+
+<div class="content">
+
+    <form name="form">
+        <input type="text" name="msg" value="Your message"/>
+        <input type="submit"/>
+    </form>
+    <div>
+        <iframe id="old" style="height:735px;margin:0px;" scrolling="no" src = 'https://mycompany.qv.firebet.dev.support.com/api/selfservice/v1/startSelfHelp?session_id=10003&session_context_id=10016&session_device_id=10003&auth_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0IjoibXljb21wYW55IiwiZCI6InJ3Y3FhLmZpcmViZXQuZGV2LnN1cHBvcnQuY29tIiwicHJtIjpbImxvZzoqIiwic2Vzc2lvbjpjb25uZWN0Il0sImp0aSI6IjQzY2JmNWEyLWQ1ZjAtNDcwNC1iOTE3LWQzYTM2YmE1YjhkMCIsImFwcCI6IlBpIiwidmVyIjoiUGkiLCJpYXQiOjE0NjQyOTQ0NTQsImF1ZCI6WyJhcHAiLCJhcGkiXSwiaXNzIjoiU3VwcG9ydC5jb20ifQ.Qd9TF348QZmEcv9stgExEoBUlAXmyPL-Ueo1AKOQ-CQ&options=null' height="100%" width="100%"> </iframe>
+    </div>
+    <div>
+        <iframe id='new' style="height:500px;margin:0px;" scrolling="no" height="100%" width="100%"></iframe>
+    </div>
+</div>
+<!-- /#feedback -->
+<!-- #footer-bottom -->
+
+<!-- /#footer-bottom -->
+<!-- /#footer-bottom -->
+
+
+<script>
+    var handshake = false;
+    var win = document.getElementById("old").contentWindow;
+    var newwin  = document.getElementById("new").contentWindow;
+    window.addEventListener("message", receiveMessage, true);
+    document.forms.form.onsubmit =
+    function() {
+        win.postMessage(JSON.stringify({"methodName" : "appToJsHandshake", "jsBridgeVersion": 1.0}), "*");
+        return false;
+    };
+
+    function sendMessage(msg) {
+        win.postMessage(
+                JSON.stringify(msg),
+                "*"
+        )
+    }
+
+    function receiveMessage(event)
+    {
+
+        var data = JSON.parse(event.data);
+        if(data.methodName === 'jsToAppHandshake') {
+            //Also Set the req handled by app is set to true.
+            handshake = true;
+            sendMessage({"methodName": "requestHandledByApp", "isRequestHandledByApp": true});
+
+
+        }
+        if(data.methodName === 'handshake' && data.status === 'failure'){
+            console.log("Handshake to JS Bridge failed!");
+            return;
+        }
+        if(data.methodName === 'requestHandledByApp' && data.status === 'failure'){
+            alert(data.message);
+            return;
+        }
+        if(!handshake) {
+            return;
+        }
+        if(data.methodName === 'requestHandledByApp' && data.status === 'success') {
+            console.log('Req. Handled by App Set.');
+            sendMessage({"methodName": "selectPath", "isRequestHandledByApp": true});
+        }
+        else if(data.methodName === 'selectPath') {
+            console.log("Selected Path")
+            var workflow_version_id = data.workflow_version_id;
+            var session_id = data.session_id;
+            var session_context_id = data.context_id;
+            var session_device_id = data.session_device_id;
+            console.log("Workflow Version" + workflow_version_id);
+            console.log("session_id " + session_id);
+            console.log("session_context_id " + session_context_id);
+            console.log("session_device_id " + session_device_id);
+//          document.getElementById('new').src = 'https://mycompany.qv.firebet.dev.support.com/api/selfservice/v1/startSelfHelp?auth_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0IjoibXljb21wYW55IiwiZCI6InJ3Y3FhLmZpcmViZXQuZGV2LnN1cHBvcnQuY29tIiwicHJtIjpbImxvZzoqIiwic2Vzc2lvbjpjb25uZWN0Il0sImp0aSI6IjQzY2JmNWEyLWQ1ZjAtNDcwNC1iOTE3LWQzYTM2YmE1YjhkMCIsImFwcCI6IlBpIiwidmVyIjoiUGkiLCJpYXQiOjE0NjQyOTMwMzIsImF1ZCI6WyJhcHAiLCJhcGkiXSwiaXNzIjoiU3VwcG9ydC5jb20ifQ.jVOMTqu8hJ5O0KyfAJjZzmawez6nYdOlD1PVuivW9ts&options=null&workflow_version_id=' + workflow_version_id;
+            var src = 'https://mycompany.rwcqa.firebet.dev.support.com/api/selfservice/v1.1.0/startSelfHelp?session_id=10003&session_context_id=10016&session_device_id=10003&auth_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0IjoibXljb21wYW55IiwiZCI6InJ3Y3FhLmZpcmViZXQuZGV2LnN1cHBvcnQuY29tIiwicHJtIjpbImxvZzoqIiwic2Vzc2lvbjpjb25uZWN0Il0sImp0aSI6IjQzY2JmNWEyLWQ1ZjAtNDcwNC1iOTE3LWQzYTM2YmE1YjhkMCIsImFwcCI6IlBpIiwidmVyIjoiUGkiLCJpYXQiOjE0NjQyOTMwMzIsImF1ZCI6WyJhcHAiLCJhcGkiXSwiaXNzIjoiU3VwcG9ydC5jb20ifQ.jVOMTqu8hJ5O0KyfAJjZzmawez6nYdOlD1PVuivW9ts&options=null&workflow_version_id='+ workflow_version_id;
+            console.error(src);
+            document.getElementById('new').src = src
+        }
+        else if(data.methodName === 'contentHeight') {
+            var height = data.height;
+            document.getElementById("old").style.height = height;
+        }
+
+    }
+
+</script>
+</body>
+
+</html>
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+Page Caching using disk: enhanced
+Database Caching 16/29 queries in 0.008 seconds using disk
+Object Caching 1832/1850 objects using disk
+Content Delivery Network via Amazon Web Services: CloudFront: dr57u1lgwukd1.cloudfront.net
+
+ Served from: demo.herothemes.com @ 2015-09-23 19:03:07 by W3 Total Cache -->
