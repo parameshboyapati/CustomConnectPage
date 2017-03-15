@@ -1,0 +1,333 @@
+body { margin-top: 0px; font-size: .75em; font-family: Arial, Helvetica, sans-serif; padding: 0; color: #000000; }
+body * { line-height: 1.22em; }
+
+/*--------------------------------------------------------------------------------------------
+**                            BASE LAYOUT STYLES                                            **
+** Top most container is page. header, main and footer are siblings inside parent page.     **
+** These four should always be referred when styling anything inside it. Just helps improve **
+** readability.                                                                             **
+--------------------------------------------------------------------------------------------*/
+#page { margin-left: auto; margin-right: auto; width: 980px; padding-left: 0; padding-right: 0; }
+
+#header .margin { margin: 0px auto; padding: 0; padding-top: 10px; position: relative; }
+#header .primary-banner { float: left; padding: 2px 25px; }
+#header .secondary-banner { float: right; padding: 2px 25px; }
+#header .phone-banner { float: right; }
+#header .nav-container { padding: 0 0 15px 0; clear: both; }
+#header .sdc-powered-by { float: right; padding: 0; padding-bottom: 10px; }
+#header .banner-separator { height: 19px; background: url(ref/band_gradient.png) repeat-x 0 -8px; }
+
+/* TODO : If www is out then I haven't yet seen a usage of navgation */
+#header .navigation a { font-size: inherit; font-weight: bold; text-transform: uppercase; }
+#header .navigation a:link, #header .navigation a:active, #header .navigation a:visited { color: #666668; text-decoration: none; }
+/*----------------------------------------------------------------*/
+
+#main { _height: 1px; /* only IE6 applies CSS properties starting with an underscore */ }
+#main .margin { padding-top: 15px; position: relative; }
+#main .content { margin: 0; padding: 0; }
+#main .panel-left { width: 46%; float: left; }
+#main .panel-right { width: 54%; float: right; }
+
+#jscheck-back { width: 100%; height: 100%; background-color: #000; opacity: 0.3; filter: alpha(opacity = 30); position: absolute; top: 0; left: 0; z-index: 4000; }
+#jscheck-screen { width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 5000; }
+#jscheck-message { height: 200px; width: 550px; background-color: #fff; border: solid 1px #000; margin: 100px auto; padding: 50px; z-index: 5500; font-size: 1.1em; color: #555; text-align: left; }
+#jscheck-message h6 { font-size: 1.8em; }
+
+/*--------------------------------------------------------------------------------------------
+**                          GENERAL HTML MARK UP STYLES                                     **
+--------------------------------------------------------------------------------------------*/
+
+/* ANCHORS : within pages are one size smaller */
+a:link, a:active, a:visited { color: #186d7a; }
+a:hover { color: #186d7a; }
+a.action { font-size: 12px; }
+
+/* HEADINGS : */
+h1, h2, h3, h4, h5, h6 { color: #000; font-family: Arial, Helvetica, sans-serif; font-weight: bold; }
+h1 { padding: 0; color: #fff; margin: 0; font-family: Arial; font-weight: normal; font-size: 20pt; text-transform: uppercase; }
+h2 { font-size: 1.5em; padding: 0; margin: 0; } /* NO paddings please! Use <div class="margin"></div> for all your content post a header */
+h2 span.breadcrumb { font-size: .6em; font-weight: bold;}
+
+/* experimental, will subclass with fieldset's heading, if generic doesn't make sense */
+h3 { font-size: 16px; }
+
+/* BUTTON */
+button { font-weight: bold; font-size: 1.2em; color: #333; border: 1px solid #D8CFD0; cursor: pointer; overflow: visible;
+  margin: 0px 0px; padding: 5px 8px;  background: url(ref/button-backgrounds.jpg) repeat-x scroll left top transparent; }
+button:hover { background: url(ref/band_gradient.png) repeat-x 0 0; }
+button.small { font-size: 1.1em; padding: 0px; margin-top: 0px; width: 60px; height: 20px;}
+@-moz-document url-prefix() { /*Hack to get button alignment right in FF*/
+  button.small { font-size: 1.1em; padding: 0px 0px 2px 0px; margin-top: 0px; width: 60px; height: 20px;}
+}
+
+/* FORMS */
+fieldset { width: auto; padding: 15px 0; }
+.gray-wrap { padding: 15px; background-color: #EBEBEB;} /* Use in addition if gray background needed on some forms */
+
+/* TABLE */
+table { width: 100%; }
+table th { font-size: 12px; font-weight: bold; color: #666666; border-right: 1px solid #B9B9B9;}
+table th, table td { padding: 5px 10px; text-align: left; }
+.subheader { padding: 5px; font-weight: bold; background: rgba(170, 170, 170, 0.24) repeat-x; }
+
+/* when two divs one for label, one for field on separate lines use this */
+fieldset .label { margin-bottom: 4px; }
+fieldset .field { margin-bottom: 8px; }
+
+/* when single div having label and field the use this */
+.label-field { position: relative; margin-bottom: 10px; clear: both; height: 23px; }
+.label-field label, .label-field .spacer { float: left; width: 120px; line-height: 20px; font-weight: bold;}
+.label-field .multi-input { float: left; width: 170px; }
+.label-field .multi-input select { float: left; width: 50px; }
+.label-field .multi-input select.months, select.months { width: 40px; }
+.label-field .multi-input select.years, select.years { width: 55px; margin-left: 3px; }
+.label-field span.label { float: left; width: 120px; }
+.label-field span label { width: auto;}
+
+/* other form elements */
+input, input.password { width: 200px; border: 1px solid #CCC; }
+input[type="checkbox"], input[type="radio"] { width: auto; border: none; }
+select { width: 202px; border: 1px solid #CCC; }
+input.medium { width: 150px; }
+select.medium { width: 132px; }
+input.small { width: 75px; }
+select.small { width: 77px; }
+textarea { width: 415px; height: 130px; border: 1px solid #CCC; }
+p strong { font-weight: bold; }
+
+/* ERRORS  */
+.field-validation-error { color: #ff0000; margin-left: 5px; font-size: 90%; line-height: 19px; }
+.field-validation-valid { display: none; }
+.input-validation-error { border: 1px solid #ff0000; background-color: #ffeeee; }
+.validation-summary-errors-off { background: none; height: 0; width: 650px; }
+.validation-summary-errors { padding-bottom: 10px; font-weight: bold; }
+.validation-summary-errors div { height: 20px; width: 650px; }
+.validation-summary-errors span { display: none; }
+.validation-summary-errors ul { color: #ff0000; }
+.validation-summary-valid { display: none; }
+
+/*--------------------------------------------------------------------------------------------
+**                          COMMON STYLES USED THROUGH OUT THE APP                          **
+--------------------------------------------------------------------------------------------*/
+.clear { clear: both; }
+.error { color: #ff0000; }
+.hidden { display: none; }
+.text-emphasize { font-size: 15px; font-weight: bold; color: #014C8D; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.bold { font-weight: bold; }
+.money { text-align: right; vertical-align: top; }
+.discount { color: green; font-weight: bold; }
+.toll-free { color: #C00; }
+.need-help { padding-top: 18px; font-weight: bold; font-size: 15px; }
+.odd { background-color: #F5F5F5; }
+.break-all { word-break:break-all; }
+
+.padding { padding: 5px; }
+.margin-top { margin: 0; margin-top: 10px; }
+.margin-bottom { margin: 0; margin-bottom: 10px; }
+.margin-top-bottom { margin: 0; margin-top: 10px; margin-bottom: 10px; }
+.margin-right { margin: 0; margin-right: 10px; }
+.margin-left { margin: 0; margin-left: 10px; }
+
+.box_gradient {
+  background: #EAEAEA; /* Old browsers */
+  background: -moz-linear-gradient(top, #EAEAEA 0%, #B9B9B9 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#EAEAEA), color-stop(100%,#B9B9B9)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #EAEAEA 0%,#B9B9B9 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #EAEAEA 0%,#B9B9B9 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #EAEAEA 0%,#B9B9B9 100%); /* IE10+ */
+  background: linear-gradient(top, #EAEAEA 0%,#B9B9B9 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#EAEAEA', endColorstr='#B9B9B9',GradientType=0 ); /* IE6-9 */
+}
+
+/*--------------------------------------------------------------------------------------------
+**                        jQuery UI OVERRIDES                                               **
+--------------------------------------------------------------------------------------------*/
+#main .ui-widget { font-family: Arial, Helvetica, sans-serif; }
+#main .ui-widget-content { background-image: none; background-color: transparent; color: #000000; font-size: 12px; }
+#main .ui-widget-header { background: url("ref/band_gradient.png") repeat-x 0 -2px; }
+#main .ui-tabs li { width: 153px; height: 28px; margin-right: 7px;}
+#main .ui-tabs li a { text-align: center;width: 100%;color: #333333;}
+#main .ui-accordion .ui-accordion-content { overflow: visible; } /*Accordion table gets a scroll bar for auto type. Hence this override*/
+#tooltip { border: none; background-color: transparent; opacity: 1.0; position: absolute; }
+#tooltip h3, #tooltip div { margin: 0; }
+.ui-widget-content {font-size: 12px; color: black; }
+#tabs {	padding: 0px; background: none; border-width: 0px; }
+#tabs .ui-tabs-nav { padding-left: 0px; background: transparent; border-width: 0px 0px 1px 0px; -moz-border-radius: 0px; -webkit-border-radius: 0px; border-radius: 0px; }
+#tabs .ui-tabs-panel { border-width: 0px 1px 1px 1px; border-color: #AAAAAA;}
+
+
+/*--------------------------------------------------------------------------------------------
+**                          HOME PAGE STYLES                                                **
+--------------------------------------------------------------------------------------------*/
+#home .consumerpanel { width: auto; padding: 0px; margin: 0px; }
+#home .panel-left { width: 28%; float: left; }
+#home .panel-right { width: 69%; float: right; }
+#home .panel-right p { padding: 0px; padding-bottom: 10px; }
+#home .need-help { padding: 0px; padding-top: 10px; }
+
+
+#views-home-index input { border: solid 1px #B0B0B0; line-height: 22px; height: 22px; width: 200px; }
+#views-home-index .label { font-size: 12px;font-weight: bold; }
+
+/*--------------------------------------------------------------------------------------------
+**                          ACCOUNT  STYLES                                                 **
+--------------------------------------------------------------------------------------------*/
+
+#account-billing-update .whats-this { float: left; position: relative; top: 3px; right: 0; margin-left: 4px; }
+#account-billing-update .phone-tooltip { width: 373px; height: 94px; }
+#account-billing-update .security-code-tooltip { width: 373px; height: 170px; }
+fieldset #checkbox-label { width: 270px; display: inline-block; }
+.password-hint { font-size: 0.9em; margin: -10px 0 10px 122px; }
+.subscribe-fields { margin-left: 122px; }
+#bttn-sign-in { margin-left: 122px; margin-top: 10px; }
+#password_submit { margin-left: 120px; margin-top: 10px; }
+#bttn-submit { margin-top:10px; margin-left: 120px; }
+#bttn-cancel { margin-top:10px; margin-left: 20px; }
+
+/*--------------------------------------------------------------------------------------------
+**                          TERMS  STYLES                                                 **
+--------------------------------------------------------------------------------------------*/
+#bttnIAgree { margin-top:20px; }
+
+
+/*--------------------------------------------------------------------------------------------
+**                          WORDER DETAILS/RECEIPT STYLES                                   **
+--------------------------------------------------------------------------------------------*/
+#views-worder-details .service-status-complete, #views-worder-receipt .service-status-complete, #views-worder-details .service-service-complete, #views-worder-receipt .service-service-complete { color: green; font-weight: bold; text-align: right; }
+#views-worder-details .service-status-cantcomplete, #view-worder-receipt .service-status-cantcomplete { color: red; font-weight: bold; text-align: right; }
+#views-worder-details .service-status-unknown, #views-worder-receipt .service-status-unknown { color: gray; font-weight: bold; text-align: right; }
+#views-worder-details .service-not-started, #views-worder-receipt .service-not-started { color: gray; font-weight: bold; text-align: right; }
+
+.service-active { color: green; font-weight: bold; text-align: right;}
+.service-suspended { color: red; font-weight: bold; text-align: right;}
+.service-customercancelled { color: red; font-weight: bold; text-align: right;}
+.service-cancelled { color: red; font-weight: bold; text-align: right;}
+.service-created { color: gray; font-weight: bold; text-align: right;}
+.service-pending { color: gray; font-weight: bold; text-align: right;}
+
+#services-ordered{ padding: 15px 15px 15px 15px;}
+#services-ordered ul li { list-style: inside;margin: 15px 0px 0px 15px;}
+
+#views-worder-details .action-item-head { background-color: #f9e1e1; color: #b92916; font-weight: bold; font-size: 14px; line-height: 33px;  margin: 10px 0 5px 0; padding-left: 10px; }
+#views-worder-details .action-item-box { border: solid 1px #e7a7a0; margin: 0; }
+#views-worder-details .action-item-box-head-text { margin-left: 10px; }
+#views-worder-details .action-item-box-head {  background-color: #fdf2f2; font-weight: bold; font-size: 14px; line-height: 25px;  margin: 0 0 5px 0;}
+#views-worder-details .action-item-instructions-text { margin: 15px 0 10px 10px;}
+#views-worder-details .action-item-instructions-header { font-weight: bold;font-style: italic; margin: 15px 0 15px 10px; }
+#views-worder-details .action-item-instructions { font-weight: bold;font-style: italic; margin: 15px 0 15px 10px;}
+
+#views-worder-details .connect-section-connect-button-msg { margin-top: 10px;}
+
+
+/*--------------------------------------------------------------------------------------------
+**                        Order Details Styles                                              **
+--------------------------------------------------------------------------------------------*/
+#views-order-details .order-eula { clear: both; float: right; width: 400px; margin-top: 10px; text-align: right;}
+
+#views-worder-details .panel-left { width: 68%; float: left; }
+#views-worder-details .panel-right { width: 30%; float: right; }
+#views-worder-details table table { border: none;}
+#views-worder-details table table td { margin-left: 5px; }
+
+#order-form #bttn-submit { float: right; }
+#order-form .whats-this { float: left; position: relative; top: 3px; right: 0; margin-left: 4px; }
+#order-form #have-account { float: right; margin-top: -30px; margin-right: 125px; }
+#order-form .credit-card-sprite { float: right; margin-right: 35px; width: 155px; height: 25px; background: transparent url(ref/sprite-buy-flow.gif) no-repeat -8px -209px; }
+#order-form .credit-card-sprite { margin-top: -24px\9; } /*Hack to get the sprite alignment in IE*/
+
+#order-form #payment-options fieldset { padding-bottom: 0; }
+#order-form .gateway-choice { height: 35px; width: 200px; }
+#order-form .linkpoint-choice { float: left; }
+#order-form .linkpoint-choice-radio-button { vertical-align: top; margin: 5px 0; padding: 0; }
+#order-form .linkpoint-choice-image { float: right; margin-right: 20px; width: 155px; height: 25px; background: transparent url(ref/sprite-buy-flow.gif) no-repeat -8px -209px; }
+#order-form .paypal-choice { float: right; width: 225px; }
+#order-form .paypal-choice-radio-button { vertical-align: top; margin: 5px 0; padding: 0; }
+#order-form #bttn-submit.paypal { background: transparent url(https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif) no-repeat; cursor: pointer; height: 28px; width: 150px; border: none; }
+#order-form #bttn-submit.paypal span { display: none; }
+#order-form #coupon-code-cont { margin-bottom: 10px; }
+
+/*SG: Cannot nest #order-form selector as the tooltip div needs to random div */
+.order-form-email-tooltip { width: 373px; height: 82px; background: transparent url(ref/buy_hovers_sprite.png) no-repeat; }
+.order-form-phone-tooltip { width: 373px; height: 94px; background: transparent url(ref/buy_hovers_sprite.png) no-repeat 0 -285px; }
+.order-form-security-code-tooltip { width: 373px; height: 170px; background: transparent url(ref/buy_hovers_sprite.png) no-repeat 0 -99px; }
+
+#views-account-logon .red { color: red; font-weight: bold; }
+
+#views-account-details h3 a, h4 a { font-weight: normal; font-size: 12px; margin-left: 20px; }
+#views-account-details #tabs ul li a { font-weight: bold; font-size: 12px; margin-left: -10px;}
+#views-account-details #progress { display: none; }
+#views-account-details .green { color: green; font-weight: bold; }
+#views-account-details .red { color: red; font-weight: bold; }
+#views-account-details .oneTenth { width: 10%; }
+#views-account-details .twoTenth { width: 20%; }
+#views-account-details .threeTenth { width: 30%; }
+#views-account-details .fourTenth { width: 40%; }
+#views-account-details .fourTenth { width: 50%; }
+#views-account-details table th, table td { vertical-align: middle; }
+#views-account-details #subscriptions-table td { text-align: inherit; }
+
+#views-account-details #subscriptions-table #subscription-column { width: 10%; }
+#views-account-details #subscriptions-table #details-column { width: 40%; }
+#views-account-details #subscriptions-table #computers-covered-column { width: 10%; }
+#views-account-details #subscriptions-table #auto-renew-column { width: 30%; }
+#views-account-details #subscriptions-table #desktop-software-column { width: 10%; }
+
+#views-account-details #features-table #feature-details-column { width: 51%; }
+#views-account-details #features-table #feature-computers-covered-column { width: 13%; padding-left: 5px; }
+#views-account-details #features-table #feature-auto-renew-column { width: 38%; }
+#views-account-details .progress { horiz-align: center; margin-left: 45%; padding-top: 40px; }
+#views-account-details .blockHeader { margin-top: 30px; margin-bottom: 5px;}
+
+#dialog .formSave { margin-left: 120px; }
+#dialog .formCancel { margin-left: 10px; margin-top: -15px; }
+
+/*--------------------------------------------------------------------------------------------
+**                        Order Thank you Styles                                            **
+--------------------------------------------------------------------------------------------*/
+
+#views-order-thankyou .message-head { margin-top: 25px; }
+#views-order-thankyou .order-line-items { margin-top: 5px; }
+
+/*--------------------------------------------------------------------------------------------
+**                        Order Receipt you Styles                                            **
+--------------------------------------------------------------------------------------------*/
+#views-worder-receipt .panel-left { width: 68%; float: left; }
+#views-worder-receipt .panel-right { width: 30%; float: right; }
+#views-worder-receipt table table { border: none;}
+#views-worder-receipt table table td { margin-left: 5px; }
+
+/*--------------------------------------------------------------------------------------------
+**                        SURVEY Styles                                                     **
+--------------------------------------------------------------------------------------------*/
+#views-survey-index  table, table td { border: none; }
+#views-survey-index  table#surveyTable { margin: 0 0 20px 0; }
+#views-survey-index  table#surveyTable thead tr td { vertical-align: bottom; }
+#views-survey-index  table#surveyTable td { border-bottom: solid 1px #ccc; padding: 8px 10px; vertical-align: top; }
+#views-survey-index  #question_comments { width: 400px; }
+#views-survey-index  textarea#SurveyFormData_CustomerComment { height: 100px; width: 400px; margin: 5px 0 20px 0; display: block; overflow: auto; border: solid 1px #666; background-color: #eee; }
+#views-survey-index  #q1, #q2, #q3, #q4, #q5, #q6, #q7, #q8 { height: 25px; width: 35px; float: left; background: transparent url(ref/sprite-survey.gif) no-repeat 0 0; }
+#views-survey-index  #q2 { background-position: 0 -27px; }
+#views-survey-index  #q3 { background-position: 0 -56px; }
+#views-survey-index  #q4 { background-position: 0 -83px; }
+#views-survey-index  #q5 { background-position: 0 -110px; }
+#views-survey-index  #q6 { background-position: 0 -137px; }
+#views-survey-index  #q7 { background-position: 0 -164px; }
+#views-survey-index  #q8 { background-position: 0 -191px; }
+#views-survey-index  tr.radios td input { border: none; width: auto; }
+#views-survey-index  tr.radios td span { margin-top: 5px; }
+#views-survey-index  #allow-check { border: none; width: auto; }
+#views-survey-index  table.rating-scale { width: 420px; }
+#views-survey-index  table.rating-scale span.center { margin-left: 50px; }
+#views-survey-index  table.rating-scale span.last { margin-left: 30px; }
+#views-survey-index  table#surveyTable table.rating-scale td { width: 33%; margin: 0; border-bottom: none; }
+#views-survey-index  .rating-scale-numbers { padding-left: 8px; }
+#views-survey-index  table#surveyTable  td.directions-text { width: 100%;margin-left:25px;vertical-align:top; }
+#views-survey-index .marginTop10 {margin-top:10px;}
+
+
+/*--------------------------------------------------------------------------------------------
+**                        Entitlement Redeem Styles                                                     **
+--------------------------------------------------------------------------------------------*/
+#views-entitlement-redeem #bttnGetStarted { margin-left: 120px; }
