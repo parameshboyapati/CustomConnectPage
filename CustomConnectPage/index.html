@@ -1,0 +1,164 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html" style="height:100%">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-control" content="no-cache">
+<meta http-equiv="Cache-control" content="no-store">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" type="text/css" href="./res/consumer.css">
+<link rel="stylesheet" type="text/css" href="./res/reset.min.css">
+<link rel="stylesheet" type="text/css" href="./res/all.site.css">
+<title>Connect</title>
+</head>
+<body style="height: 100%; " >
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-74222246-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+<style type="text/css">
+body { background-color: #ECECEC; }
+</style>
+
+<div id="connectPageContent">
+<div class="connectSection">
+<div class="logocontainer">
+<div class="logo">
+<img src="./res/tenant_logo.png" alt="SDC Ryan" align="right" onerror="this.style.display=&#39;none&#39;">
+</div>
+<div class="sdclogo">
+<img src="./res/logo.png" alt="Support.Com" align="right">
+</div>
+</div>
+<div>
+<div style="background: #eee no-repeat scroll center; width:100%; height: 2px;"></div>
+<div style="margin-top: 5px; margin-bottom: 5px;"></div>
+</div>
+<div>
+<div style="background: #eee no-repeat scroll center; width:100%; height: 2px;"></div>
+<div class="mainDiv">
+<div class="errorMessage" id="errorMessage">
+</div>
+<div>
+<div class="machineInfo">
+<p>
+<span class="connectPageColor">IF ASKED..</span>
+<div class="BrowserAndOsInfo">
+Your Browser is <span id="browserName">Some Name</span>&nbsp;and your Operating System is <span id="osName">Some OS</span>
+</div>
+</p>
+</div>
+<div class="mainForm">
+<p>
+<span id="customPage" class="connectPageColor">CUSTOM CONNECT PAGE</span>
+<br><br>
+<span class="highlight"><font><font>STEP 1: Enter tenant url</font></font></span> Ex:https://mycompany.stage.nexus.support.com
+<br>
+<input tabindex="1" type="tel" name="url" id="url" value="" style="height:30px; width:250px;">
+</p>
+<br>
+<p>
+<span class="highlight"><font><font>STEP 2: Enter tenant JWT</font></font></span><font><font> from admin</font></font>
+<br>
+<input tabindex="2" type="tel" name="jwt" id="jwt" value="" style="height:120px; width:550px;">
+</p>
+<p>
+<br>
+<span class="highlight"><font><font>STEP 3: Type the Connection Code</font></font></span>
+<input tabindex="3" type="tel" name="connectionCode" id="connectionCode" value="" style="height:30px; width:100px;">
+</p>
+<br>
+<p>
+<span class="highlight"><font><font>STEP 4: Click the box below</font></font></span><font><font> to authorize remote access to your </font></font><span class="deviceType"><font><font>computer</font></font></span>
+<br>
+</p><table class="agreement">
+<tbody><tr>
+<td>
+<input tabindex="4" type="checkbox" name="connectionAgreement" id="connectionAgreement" >
+</td>
+<td>
+<div class="check_text"><font><font>
+I authorize automation to access and control my </font></font><span class="deviceType"><font><font>computer</font></font></span><font><font> for diagnosis, service
+and repair and I accept the </font></font><a href="https://static.support.com/saas/customer/tos.htm" target="_blank"><font><font>Terms of Service</font></font></a><font><font> and </font></font><a href="https://static.support.com/saas/privacy.htm" target="_blank"><font><font>Privacy Policy</font></font></a><font><font> .
+</font></font></div>
+</td>
+</tr>
+</tbody></table>
+<p></p>
+<p>
+<br>
+<span class="highlight"><font><font>STEP 5: When instructed,</font></font></span><font><font> click the Connect button.
+</font></font><br>
+<button type="button" tabindex="5" id="connectButton" alt="Connect Now" onclick="connecttonexus()">
+<span><font><font>Connect</font></font></span>
+</button>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script  type="text/javascript" src="./script1.js"></script>
+<script>
+$(document).ready(function() {
+$("#browserName").text(window.$.client.browser.name + " " + window.$.client.browser.version);
+$("#osName").text(window.$.client.os.friendlyName);
+});
+</script>
+<script type="text/javascript" src="./nexus.js"></script>
+<script type="text/javascript">
+// Initialize the jwt with the tenanted JWT (generated from admin page)
+
+var jwt3 =document.getElementById("jwt").value;
+console.log('JWT is:'+jwt3);
+var connect = new NexusConnect(jwt3)
+function connecttonexus() {
+
+if(document.getElementById("connectionAgreement").checked === false)
+{
+document.getElementById('errorMessage').innerHTML = "Please check the box indicating you accept the Terms of Service and Privacy Policy.";
+return;
+}
+
+var connectioncode = document.getElementById("connectionCode").value;
+if (connectioncode == '') {
+document.getElementById('errorMessage').innerHTML ="Connection code is required.";
+return;
+}
+var jwt1= document.getElementById("jwt").value;
+if (jwt1 == '') {
+document.getElementById('errorMessage').innerHTML ="Please enter JWT";
+return;
+}
+var url1= document.getElementById("url").value;
+if (jwt1 == '') {
+document.getElementById('errorMessage').innerHTML ="Please enter URL";
+return;
+}
+//Pass the connection code and callback function to handle a failure case.
+connect.DownloadNexus1(url1,jwt1,connectioncode, callback);
+}
+
+var callback = function(err, data){
+if(err)
+{
+document.getElementById('errorMessage').innerHTML ="Invalid connection code.";
+}
+}
+
+</script>
+

@@ -1,0 +1,196 @@
+/* Chat Styles */
+#chatBody .chatContent { width: 650px; margin-left: 28px; }
+#chatBody button span { display: inline; }
+#chatBody .chat { height: auto; width: 650px; padding: 0; margin:5px 0; position: relative; }
+#chatBody .chat .chatDisplay { border: 1px solid #cccccc; height: 375px; width: 97%; margin: 7px 0; padding: 8px; overflow: auto; }
+#chatBody .chat .chatTyping { width: 100%; text-align: center; color: #01555f; display: none; }
+#chatBody .chat .chatEntry { margin-top: 5px; padding: 0; border:solid 1px #ccc; background-color: #eee; }
+#chatBody .chat .chatEntry textarea {  border: 1px solid #cccccc; padding: 3px; margin: 5px; height: 60px; width: 565px; }
+#chatBody .chat .chatSend { cursor: pointer; width: 60px; height: 30px; margin:0 0 5px 0; padding: 0; vertical-align:bottom; }
+#chatBody .chat p.chatuser { padding-top: 6px; }
+#chatBody .chat cite { font-weight: bold; font-style: normal; color: #01535e; }
+/* Override for user1 */
+#chatBody .chat .user1 cite { color: #757575; }
+#chatBody .chat P { color: #666; margin-top: 0px; margin-bottom: 0; line-height: 1.2em; }
+#chatBody .chat q { color: black; }
+#chatBody .chat-footer  { width:auto; text-align: center; }
+#chatBody .logo {overflow: hidden; float: left; padding-top: 10px;}
+#chatBody .logo img {background-color: #424242;  width: 250px; height:50px }
+#chatBody .sessionText { float: right; padding-top: 20px;}
+#chatBody .joined { color:#999;}
+#chatBody .left { color:#999;}
+
+#chatMobileBody { height: 100%; }
+#chatMobileBody .chatContent { width: 100%; height: 100%;}
+#chatMobileBody button span { display: inline; }
+#chatMobileBody .chat { height: 100%; width: 99%; position: absolute; }
+#chatMobileBody .chat .chatDisplay { height: calc(100% - 40px - 53px); width: 99%; padding-left: 1%; padding-right: 1%; overflow-y: scroll; margin-top: 45px; z-index: 0; position: absolute; margin-bottom: 75px;}
+#chatMobileBody .chat .chatTyping { width: 100%; text-align: center; color: #01555f; display: none; }
+#chatMobileBody .chat .chatEntry { bottom: 0; margin-top: 5px; padding: 0; width: 100%; height: 53px; background: #B3B3B3; position: fixed; z-index: 1;}
+#chatMobileBody .chat .chatEntry textarea {  border: 1px solid #cccccc; margin: 8px 6px 2px 6px; width:100%; height: 27px; float: left}
+#chatMobileBody .chat .chatSend { cursor: pointer; font-size: 16px; text-decoration: none; color: #000000; font-weight: bolder;}
+#chatMobileBody .chat .chatSend:hover { cursor: pointer; text-decoration: none; color: #000000;}
+#chatMobileBody .chat p.chatuser { padding-top: 6px; }
+#chatMobileBody .chat cite { font-weight: bold; font-style: normal; color: #01535e;}
+
+#chatMobileBody .chat .chatContainerClient{ position: relative;  padding: 7px; margin: 1em 0 3em; color: #000; background-color: #666666; background-image: -webkit-gradient(linear, left top, left bottom, from(#666666), to(#595959)); background-image: -webkit-linear-gradient(top, #666666, #595959); background-image: -moz-linear-gradient(top, #666666, #595959); background-image: -o-linear-gradient(top, #666666, #595959); background-image: linear-gradient(to bottom, #666666, #595959); border-color: #666666; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; margin-bottom: 10px !important; }
+/*#chatMobileBody .chat .chatContainerClient:after { content: ""; position: absolute; bottom: -15px; left: 50px; border-width: 15px 15px 0; border-style: solid; border-color: #f3f3f3 transparent; display: block; width: 0; }*/
+#chatMobileBody .chat .chatContainerAgent{ position: relative;  padding: 7px; margin: 1em 0 3em; color: #000; background-color: #88c82b; background-image: -webkit-gradient(linear, left top, left bottom, from(#88c82b), to(#6fa827)); background-image: -webkit-linear-gradient(top, #88c82b, #6fa827); background-image: -moz-linear-gradient(top, #88c82b, #6fa827); background-image: -o-linear-gradient(top, #88c82b, #6fa827); background-image: linear-gradient(to bottom, #88c82b, #6fa827); border-color: #89cb29; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; margin-bottom: 10px !important; }
+#chatMobileBody .chat .chatContainerAgent a:link { text-decoration:underline; font-style: italic }
+/*#chatMobileBody .chat .chatContainerAgent:after { content: ""; position: absolute; bottom: -15px; left: 50px; border-width: 15px 15px 0; border-style: solid; border-color: #d8d8d8 transparent; display: block; width: 0; }*/
+#chatMobileBody .chat .joined { position: relative;  padding:12px 7px; margin: 1em 0 3em; color: #000; background-color: #E8E8E8; background-image: -webkit-gradient(linear, left top, left bottom, from(#E8E8E8), to(#DBDBDB)); background-image: -webkit-linear-gradient(top, #E8E8E8, #DBDBDB); background-image: -moz-linear-gradient(top, #E8E8E8, #DBDBDB); background-image: -o-linear-gradient(top, #E8E8E8, #DBDBDB); background-image: linear-gradient(to bottom, #E8E8E8, #DBDBDB); border-color: #E8E8E8; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; margin-bottom: 10px !important; }
+
+/* Override for user1 */
+#chatMobileBody .chat .user1 cite { color: #757575; }
+#chatMobileBody .chat .joined P { color: #666; margin-top: 0px; margin-bottom: 0; line-height: 1.2em; }
+#chatMobileBody .chat .chatContainerAgent P { color: #fff; margin-top: 0px; margin-bottom: 0; line-height: 1.2em; }
+#chatMobileBody .chat .chatContainerClient P { color: #fff; margin-top: 0px; margin-bottom: 0; line-height: 1.2em; }
+#chatMobileBody .chat q { color: black; }
+#chatMobileBody .chat-footer  { width:auto; text-align: center; }
+#chatMobileBody .logo {overflow: hidden; background-image: url("/images/header_bg.png"); width: 100%; height: 40px; position: fixed; top: 0; z-index: 1;}
+#chatMobileBody .logo img { float: right; margin-right: 1%; height: 35px; margin-top: 3px;}
+#chatMobileBody .sessionText { float: right; padding-top: 20px;}
+#chatMobileBody .joined { color:#999;}
+#chatMobileBody .left { color:#999;}
+
+/* Survey Styles */
+#surveyBody  { margin-left: auto; margin-right: auto; width: 980px; padding-left: 0; padding-right: 0; margin-top: 10px;}
+#surveyBody .logo { float:right; }
+#surveyBody .surveyHeader {  float:left; margin: 25px 0 0 10px; }
+#surveyBody .surveySubHeader {  margin: 20px 0 0 10px; }
+#surveyBody table, table td { border: none; }
+#surveyBody table#surveyTable { margin: 20px 0; }
+#surveyBody table#surveyTable thead tr td { vertical-align: bottom; }
+#surveyBody table#surveyTable td { border-bottom: solid 1px #ccc; padding: 8px 10px; vertical-align: top; }
+#surveyBody #question_comments { width: 400px; }
+#surveyBody textarea#SurveyFormData_CustomerComment { height: 100px; width: 400px; margin: 5px 0 20px 0; display: block; overflow: auto; border: solid 1px #eee; background-color: #eee; }
+#surveyBody tr.radios td input { border: none; width: auto; margin: 3px 3px 0px 5px;}
+#surveyBody tr.radios td span { margin-top: 5px; }
+#surveyBody #allow-check { border: none; width: auto; }
+#surveyBody table.rating-scale { width: 420px; }
+#surveyBody table#surveyTable table.rating-scale td { width: 33%; margin: 0; border-bottom: none; }
+#surveyBody table#surveyTable table.rating-scale span.center { margin-left: 50px;}
+#surveyBody table#surveyTable table.rating-scale span.last { margin-left: 35px;}
+#surveyBody .rating-scale-numbers { padding-left: 8px; }
+#surveyBody table#surveyTable td.directions-text { width: 100%; margin-left: 25px; vertical-align: top; }
+#surveyBody .marginTop10 { margin-top: 10px; }
+#surveyBody .termsText { font-size: 9px; }
+#surveyBody table#surveyTable td.no-border { border-bottom: none;}
+#surveyBody .validationErrors { color: red; font-weight: bold; text-align: center; }
+
+/* Survey Mobile Styles*/
+#surveyMobileBody .customerSurveyText { padding-bottom: 30px; font-family:RobotoBlack; font-size: 16px; font-weight: bold; color: #333333 }
+#surveyMobileBody .QuestionNumberText { padding-bottom: 20px; font-family:RobotoBlack; font-size: 16px; font-weight: bold; color: #333333 }
+#surveyMobileBody .ratingQuestion { padding-bottom: 80px; color: #39a3d3; font-size: 16px; font-family: RobotoLight }
+#surveyMobileBody .OtherQuestion { padding-bottom: 20px; color: #39a3d3; font-size: 16px; font-family: RobotoLight }
+
+#surveyMobileBody #SurveyFormData\.RatingofProfessional .ui-radio, #surveyMobileBody #SurveyFormData\.RatingofRecommend .ui-radio,
+#surveyMobileBody #SurveyFormData\.RatingofUnderstandability .ui-radio, #surveyMobileBody #SurveyFormData\.RatingofSpeed .ui-radio { width: 9% }
+
+#surveyMobileBody #SurveyFormData\.RatingofUnderstandability .ui-radio .ui-btn-inner,
+#surveyMobileBody #SurveyFormData\.RatingofProfessional .ui-radio .ui-btn-inner,
+#surveyMobileBody #SurveyFormData\.RatingofRecommend .ui-radio .ui-btn-inner,
+#surveyMobileBody #SurveyFormData\.RatingofSpeed .ui-radio .ui-btn-inner {text-overflow: clip !important;}
+
+#surveyMobileBody #SurveyFormData\.RatingofUnderstandability .ui-controlgroup-controls,
+#surveyMobileBody #SurveyFormData\.RatingofProfessional .ui-controlgroup-controls,
+#surveyMobileBody #SurveyFormData\.RatingofRecommend .ui-controlgroup-controls,
+#surveyMobileBody #SurveyFormData\.RatingofSpeed .ui-controlgroup-controls {width: 100%}
+
+#surveyMobileBody .ui-page .ui-footer {  box-sizing: border-box; border: none}
+#surveyMobileBody .ui-page .ui-footer .ui-btn{ clear:both; display:block; margin: 0px 5px 10px 5px; background-image: -webkit-gradient(linear,left top,left bottom,from(#39a3d3),to(#5f9cc5));
+    background-image: -webkit-linear-gradient(#39a3d3,#5f9cc5); background-image: linear-gradient(#39a3d3,#5f9cc5); -webkit-border-radius:.5em; border-radius: .5em}
+#surveyMobileBody .ui-page .ui-footer .ui-btn .ui-btn-text {font-family: RobotoLight; font-size: 22px}
+#surveyMobileBody #SurveyFormData\.CustomerComment {height: 100px}
+#surveyMobileBody #SurveyFormData\.CanBeContactedText { font-family: RobotoLight; }
+#surveyMobileBody .pageNumber { float: right; opacity: .5}
+
+/* Survey Thank you Styles */
+#surveyThankyouBody  { margin-left: auto; margin-right: auto; width: 980px; padding-left: 0; padding-right: 0; margin-top: 10px;}
+#surveyThankyouBody .logo { float:right; }
+#surveyThankyouBody .surveyHeader {  float:left; margin: 25px 0 0 10px; }
+#surveyThankyouBody .surveySubHeader {  margin: 20px 0 0 10px; }
+
+#surveyErrorBody  { margin-left: auto; margin-right: auto; width: 980px; padding-left: 0; padding-right: 0; margin-top: 10px;}
+#surveyErrorBody .logo { float:right; }
+#surveyErrorBody .surveyHeader {  float:left; margin: 25px 0 0 10px; }
+#surveyErrorBody .surveySubHeader {  margin: 20px 0 0 10px; }
+
+#surveyErrorBodyMobile,  #surveyThankyouBodyMobile  { margin-left: auto; margin-right: auto;  padding-left: 0; padding-right: 0; margin-top: 10px;}
+#surveyErrorBodyMobile .logo , #surveyThankyouBodyMobile .logo { float:right; }
+#surveyErrorBodyMobile .surveyHeader, #surveyThankyouBodyMobile .surveyHeader {  float:left; margin: 25px 0 0 10px; }
+#surveyErrorBodyMobile .surveySubHeader, #surveyThankyouBodyMobile .surveySubHeader {  margin: 20px 0 0 10px; }
+
+
+/*--------------------------------------------------------------------------------------------
+**                        ConnectPage Styles                                                     **
+--------------------------------------------------------------------------------------------*/
+#connectPageContent .connectSection { margin-top: 10px; margin-left: auto; margin-right: auto; width: 680px; padding: 5px; background-color: #FFFFFF; color: #000000; font-size: 15px; }
+#connectPageContent .logocontainer { height: 50px; margin-bottom: 25px; }
+#connectPageContent .logo { margin-top: 10px; height: 40px; width: 230px; float: left; }
+#connectPageContent .logo img { float: left; margin-left: 15px; }
+#connectPageContent .sdclogo { height: 40px; width: 230px; float: right; }
+#connectPageContent .sdclogo img { float: left; margin-left: 15px; margin-right: 20px; margin-top: 10px; height: 40px; width: 200px; }
+#connectPageContent .agreement { font-size: 10px; width: 380px; border: 0px; margin-left: 25px; }
+#connectPageContent .agreement input { width: 40px; height: 40px; border: 1px #ECECEC solid; }
+#connectPageContent .agreement .check_text { font-size: 12px; width: 360px; margin-left: 5px; text-align: left; }
+#connectPageContent .agreement td { padding: 0px; }
+#connectPageContent form { margin-top: 10px; text-align: left; }
+#connectPageContent .errorMessage { color: red; font-weight: bold; text-align: center; }
+#connectPageContent .validation-summary-errors { text-align: center; padding-bottom: 5; }
+#connectPageContent #url { font-size: 20px; height: 32px; width: 380px; color: #444444; padding-left: 3px; margin-left: 25px; }
+#connectPageContent #jwt { font-size: 20px; height: 20px; width: 380px; color: #444444; padding-left: 3px; margin-left: 25px; }
+#connectPageContent #connectionCode { font-size: 32px; width: 380px; color: #444444; padding-left: 3px; margin-left: 25px; }
+#connectPageContent #connectButton { width: 100px; margin-top: 10px; margin-left: 25px; margin-bottom: 20px; }
+#connectPageContent .topDivider { clear: both; height: 1px; color: #ECECEC; }
+#connectPageContent .mainDiv { margin: 10px 25px 0 25px; }
+#connectPageContent .machineInfo { margin-top: 10px; padding: 10px; width: 150px; float: right; background-color: #ECECEC }
+#connectPageContent .mainForm { width: 430px; }
+#connectPageContent div.BrowserAndOsInfo { margin-top: 10px; }
+#connectPageContent #osName, #connectPageContent #browserName { font-weight: 700; }
+#connectPageContent .marginTop { margin-top: 40px; }
+#connectPageContent span.highlight { font-size: 20px; font-weight: 700; }
+#connectPageContent .connectPageColor { font-weight: 700; }
+
+/*Styling for iPhone */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px), only screen and (min-device-width : 320px)and (max-device-width : 568px) {
+  body { background-color: #fff !important; }
+  #connectPageContent { height: 100%; }
+  #connectPageContent .connectSection { height: 100%; margin:0; width: 100%; }
+  #connectPageContent .logocontainer { height: 10%; margin-bottom: 10px; }
+  #connectPageContent .logo { height: 100%; width: 120px; margin-top: 0px; margin-left: 10px; }
+  #connectPageContent .logo img { margin-left: 0px; height: 85%; width: 100%; }
+  #connectPageContent .logocontainer .sdclogo { height: 100%; width: 120px; margin-right: 10px; }
+  #connectPageContent .logocontainer .sdclogo img{ margin-right: 0px; height: 85%; width: 100%; margin-top: 0px; margin-left: 0px;  }
+  #connectPageContent .agreement { width: 95%; font-size: 11px; margin-left:10px; }
+  #connectPageContent .agreement input { border: 1px solid #a8a8a8; height: 30px; width: 30px; }
+  #connectPageContent .agreement .check_text { font-size:10px; text-align: left; width: 100%; }
+  #connectPageContent #connectionCode { font-size: 15px; width: 85%; margin-left:10px; }
+  #connectPageContent #connectButton { margin-left:10px; width: 80px; }
+  #connectPageContent .mainDiv { margin:10px 15px 0 15px; }
+  #connectPageContent .machineInfo { width:25%; }
+  #connectPageContent .mainForm { width:63%; }
+  #connectPageContent div.BrowserAndOsInfo { font-size: 10px; }
+  #connectPageContent p { font-size: 10px !important; }
+  #connectPageContent span.highlight { font-size: 12px; }
+  #connectPageContent .marginTop { margin-top:15px; }
+}
+
+/*Styling for iPad*/
+@media only screen and (min-device-width : 768px)and (max-device-width : 1024px) {
+  body { background-color: #fff !important; }
+  #connectPageContent { height: 100%; }
+  #connectPageContent .connectSection { height: 100%; width: 100%; margin-top: 0px; }
+  #connectPageContent .logocontainer { height: 10%; margin-bottom: 15px; }
+  #connectPageContent .logo { height: 100%; margin-top: 0px; margin-left: 15px; }
+  #connectPageContent .logo img { height: 85%; width: 100%; margin: 0; left: 0px; }
+  #connectPageContent .logocontainer .sdclogo{ height: 100%; }
+  #connectPageContent .logocontainer .sdclogo img{ height: 85%; }
+  #connectPageContent .agreement { width: 95%; }
+  #connectPageContent .agreement input { border: 1px solid #a8a8a8; }
+  #connectPageContent .agreement .check_text { width: 94%; }
+  #connectPageContent #connectionCode { width: 85%; }
+  #connectPageContent .mainForm { width:63%; }
+  #connectPageContent .machineInfo { width:25%; }
+
+}
